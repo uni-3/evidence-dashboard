@@ -20,10 +20,10 @@ select
     pm.position,
     pm.ctr,
     case
-        when pm.impressions > m.median_impressions and pm.position < m.median_position and pm.ctr < m.median_ctr then 'Unseen Billboard'
-        when pm.impressions < m.median_impressions and pm.ctr > m.median_ctr then 'Hidden Gem'
-        when pm.position < 5 and pm.ctr < m.median_ctr then 'Unconvincing Winner'
-        when pm.position > 10 and pm.ctr > m.median_ctr then 'Rising Star'
+        when pm.impressions > COALESCE(m.median_impressions, 0) and pm.position < COALESCE(m.median_position, 999) and pm.ctr < COALESCE(m.median_ctr, 0) then 'Unseen Billboard'
+        when pm.impressions < COALESCE(m.median_impressions, 0) and pm.ctr > COALESCE(m.median_ctr, 0) then 'Hidden Gem'
+        when pm.position < 5 and pm.ctr < COALESCE(m.median_ctr, 0) then 'Unconvincing Winner'
+        when pm.position > 10 and pm.ctr > COALESCE(m.median_ctr, 0) then 'Rising Star'
         else 'Other'
     end as segment
 from page_metrics pm
