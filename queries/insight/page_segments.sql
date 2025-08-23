@@ -9,9 +9,9 @@ with page_metrics as (
 ),
 medians as (
     select
-        percentile_cont(impressions, 0.5) over() as median_impressions,
-        percentile_cont(position, 0.5) over() as median_position,
-        percentile_cont(ctr, 0.5) over() as median_ctr
+        approx_quantiles(impressions, 2)[offset(1)] as median_impressions,
+        approx_quantiles(position, 2)[offset(1)] as median_position,
+        approx_quantiles(ctr, 2)[offset(1)] as median_ctr
     from page_metrics
 )
 select
@@ -20,10 +20,11 @@ select
     pm.position,
     pm.ctr,
     case
-        when pm.impressions > (select median_impressions from medians limit 1) and pm.position < (select median_position from medians limit 1) and pm.ctr < (select median_ctr from medians limit 1) then 'Unseen Billboard'
-        when pm.impressions < (select median_impressions from medians limit 1) and pm.ctr > (select median_ctr from medians limit 1) then 'Hidden Gem'
-        when pm.position < 5 and pm.ctr < (select median_ctr from medians limit 1) then 'Unconvincing Winner'
-        when pm.position > 10 and pm.ctr > (select median_ctr from medians limit 1) then 'Rising Star'
+        when pm.impressions > m.median_impressions and pm.position < m.median_position and pm.ctr < m.median_ctr then 'Unseen Billboard'
+        when pm.impressions < m.median_impressions and pm.ctr > m.median_ctr then 'Hidden Gem'
+        when pm.position < 5 and pm.ctr < m.median_ctr then 'Unconvincing Winner'
+        when pm.position > 10 and pm.ctr > m.median_ctr then 'Rising Star'
         else 'Other'
     end as segment
 from page_metrics pm
+cross join medians m
