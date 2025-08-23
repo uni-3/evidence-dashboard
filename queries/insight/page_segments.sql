@@ -9,9 +9,9 @@ with page_metrics as (
 ),
 medians as (
     select
-        approx_quantiles(impressions, 2)[offset(1)] as median_impressions,
-        approx_quantiles(position, 2)[offset(1)] as median_position,
-        approx_quantiles(ctr, 2)[offset(1)] as median_ctr
+        approx_quantiles(impressions, 2)[2] as median_impressions,
+        approx_quantiles(position, 2)[2] as median_position,
+        approx_quantiles(ctr, 2)[2] as median_ctr
     from page_metrics
 )
 select
