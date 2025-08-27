@@ -18,12 +18,15 @@ This chart classifies pages into segments based on their performance in Google S
     yMax=p95_impressions
     yAxis=true
     yAxisLabels=true
+    yGridlines=true
+    xGridlines=true
     yFmt=num
-    xFmt=num2
+    xFmt=pct
     sizeFmt=num
     yAxisTitle="Impressions"
-    xAxisTitle="Click Through Rate (0-100)"
+    xAxisTitle="Click Through Rate"
     colorPalette={['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']}
+    chartAreaHeight=450
     tooltipTitle=tooltip_title
 >
 </BubbleChart>
