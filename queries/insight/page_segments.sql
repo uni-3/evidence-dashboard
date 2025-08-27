@@ -4,14 +4,14 @@ with page_metrics as (
         sum(impressions) as impressions,
         sum(clicks) as clicks,
         avg(avg_position) as position,
-        CAST(sum(clicks) AS REAL) / NULLIF(sum(impressions), 0) as ctr
+        (CAST(sum(clicks) AS REAL) / NULLIF(sum(impressions), 0)) * 100 as ctr
     from free.metrics
     group by page_title
 ),
 medians as (
     select
         approx_quantile(impressions, 0.5) as median_impressions,
-        approx_quantile(impressions, 0.95) as p95_impressions,
+        COALESCE(approx_quantile(impressions, 0.95), 1000) as p95_impressions,
         approx_quantile(position, 0.5) as median_position,
         approx_quantile(ctr, 0.5) as median_ctr
     from page_metrics
