@@ -18,6 +18,7 @@ medians as (
 )
 select
     pm.page_title,
+    CONCAT(pm.page_title, ' (順位: ', CAST(ROUND(pm.position, 1) AS STRING), ')') as tooltip_title,
     pm.impressions,
     pm.clicks,
     pm.position,
