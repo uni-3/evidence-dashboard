@@ -4,6 +4,7 @@ title: blog dashboard
 queries:
   - content_len: blog/content_len.sql
   - content_count: blog/content_count.sql
+  - content_total_count: blog/content_total_count.sql
   - rank_month: blog/rank_month.sql
   - tag_count: blog/tag_count.sql
   - norm_metrics_month: blog/norm_metrics_month.sql
@@ -14,7 +15,7 @@ queries:
 
 ### 記事に関するデータ
 
-記事数合計: ** <Value data={content_count} column="c" agg="sum" /> **
+記事数合計: ** <Value data={content_total_count} column="c" /> **
 
 <Grid cols=2>
   <Group>
