@@ -8,6 +8,7 @@ queries:
 
 This chart classifies pages into segments based on their performance in Google Search.
 
+<div style="border: 1px solid black; padding: 10px;">
 <BubbleChart
     data={segments}
     title="Page Segments"
@@ -20,15 +21,8 @@ This chart classifies pages into segments based on their performance in Google S
     xFmt=num
     sizeFmt=num
     yAxisTitle="Impressions"
-    xAxisTitle="Click Through Rate (CTR)"
-    echartsOptions={{
-        series: {
-            symbol: 'rect',
-            itemStyle: {
-                borderColor: '#000',
-                borderWidth: 1
-            }
-        }
-    }}
+    xAxisTitle="Click Through Rate (0-100)"
+    colorPalette={['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']}
 >
 </BubbleChart>
+</div>

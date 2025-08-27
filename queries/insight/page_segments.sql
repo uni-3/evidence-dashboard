@@ -24,11 +24,11 @@ select
     pm.ctr,
     m.p95_impressions,
     case
-        when pm.impressions > COALESCE(m.median_impressions, 0) and pm.position < COALESCE(m.median_position, 999) and pm.ctr < COALESCE(m.median_ctr, 0) then 'Unseen Billboard'
-        when pm.impressions < COALESCE(m.median_impressions, 0) and pm.ctr > COALESCE(m.median_ctr, 0) then 'Hidden Gem'
-        when pm.position < COALESCE(m.median_position, 999) and pm.ctr < COALESCE(m.median_ctr, 0) then 'Unconvincing Winner'
-        when pm.position > COALESCE(m.median_position, 999) and pm.ctr > COALESCE(m.median_ctr, 0) then 'Rising Star'
-        else 'Other'
+        when pm.impressions > COALESCE(m.median_impressions, 0) and pm.position < COALESCE(m.median_position, 999) and pm.ctr < COALESCE(m.median_ctr, 0) then '見えない看板'
+        when pm.impressions < COALESCE(m.median_impressions, 0) and pm.ctr > COALESCE(m.median_ctr, 0) then '隠れた逸品'
+        when pm.position < COALESCE(m.median_position, 999) and pm.ctr < COALESCE(m.median_ctr, 0) then '説得力のない勝者'
+        when pm.position > COALESCE(m.median_position, 999) and pm.ctr > COALESCE(m.median_ctr, 0) then '期待の星'
+        else 'その他'
     end as segment
 from page_metrics pm
 cross join medians m
