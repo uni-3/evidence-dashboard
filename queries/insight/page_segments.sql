@@ -3,7 +3,7 @@ with page_metrics as (
         page_title,
         sum(impressions) as impressions,
         avg(avg_position) as position,
-        safe_divide(sum(clicks), sum(impressions)) as ctr
+        fdiv(sum(clicks), sum(impressions)) as ctr
     from free.metrics
     group by page_title
 ),
