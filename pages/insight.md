@@ -17,10 +17,18 @@ This chart classifies pages into segments based on their performance in Google S
     size=clicks
     yMax=p95_impressions
     yFmt=num
-    xFmt=pct
+    xFmt=num
     sizeFmt=num
-    yGridlines=false
     yAxisTitle="Impressions"
     xAxisTitle="Click Through Rate (CTR)"
+    echartsOptions={{
+        series: {
+            symbol: 'rect',
+            itemStyle: {
+                borderColor: '#000',
+                borderWidth: 1
+            }
+        }
+    }}
 >
 </BubbleChart>
