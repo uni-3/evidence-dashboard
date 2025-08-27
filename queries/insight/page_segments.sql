@@ -2,7 +2,7 @@ with page_metrics as (
     select
         page_title,
         sum(impressions) as impressions,
-        avg(position) as position,
+        avg(avg_position) as position,
         safe_divide(sum(clicks), sum(impressions)) as ctr
     from free.metrics
     group by page_title
