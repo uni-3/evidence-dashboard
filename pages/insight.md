@@ -21,7 +21,9 @@ This chart classifies pages into segments based on their performance in Google S
     yGridlines=true
     xGridlines=true
     yFmt=num
-    xFmt=pct
+    xFmt=num2
+    xMin=0
+    xMax=1
     sizeFmt=num
     yAxisTitle="Impressions"
     xAxisTitle="Click Through Rate"
