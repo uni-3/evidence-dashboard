@@ -8,7 +8,7 @@ queries:
 
 This chart classifies pages into segments based on their performance in Google Search.
 
-<div style="border: 1px solid black; padding: 10px;">
+<div style="border: 1px solid black; padding: 10px; height: 600px;">
 <BubbleChart
     data={segments}
     title="Page Segments"
@@ -17,6 +17,7 @@ This chart classifies pages into segments based on their performance in Google S
     series=segment
     size=clicks
     yMax=p95_impressions
+    yAxis=true
     yFmt=num
     xFmt=num
     sizeFmt=num
