@@ -12,14 +12,15 @@ This chart classifies pages into segments based on their performance in Google S
     data={segments}
     title="Page Segments"
     x=ctr
-    y=position
+    y=impressions
     series=segment
-    size=impressions
+    size=clicks
+    yMax=p95_impressions
     yFmt=num
     xFmt=pct
     sizeFmt=num
     yGridlines=false
-    yAxisTitle="Average Position"
+    yAxisTitle="Impressions"
     xAxisTitle="Click Through Rate (CTR)"
 >
 </BubbleChart>
