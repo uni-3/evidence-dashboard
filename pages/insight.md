@@ -16,8 +16,6 @@ This chart classifies pages into segments based on their performance in Google S
     series=segment
     size=clicks
     yMax=p95_impressions
-    yAxis=true
-    yAxisLabels=true
     yGridlines=true
     xGridlines=true
     yFmt=num
