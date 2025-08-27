@@ -4,7 +4,7 @@ with page_metrics as (
         sum(impressions) as impressions,
         sum(clicks) as clicks,
         avg(avg_position) as position,
-        fdiv(sum(clicks), sum(impressions)) as ctr
+        CAST(sum(clicks) AS REAL) / NULLIF(sum(impressions), 0) as ctr
     from free.metrics
     group by page_title
 ),
