@@ -28,6 +28,7 @@ This chart classifies pages into segments based on their performance in Google S
     colorPalette={['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']}
     chartAreaHeight=450
     tooltipTitle=tooltip_title
+    leftPadding=30
 >
 </BubbleChart>
 
