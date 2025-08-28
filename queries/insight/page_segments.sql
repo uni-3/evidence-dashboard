@@ -11,7 +11,6 @@ with page_metrics as (
 medians as (
     select
         approx_quantile(impressions, 0.5) as median_impressions,
-        COALESCE(approx_quantile(impressions, 0.95), 1000) as p95_impressions,
         approx_quantile(position, 0.5) as median_position,
         approx_quantile(ctr, 0.5) as median_ctr
     from page_metrics
@@ -19,11 +18,16 @@ medians as (
 select
     pm.page_title,
     CONCAT(pm.page_title, ' (順位: ', CAST(ROUND(pm.position, 1) AS STRING), ')') as tooltip_title,
+    -- Raw values for tooltip and logic
     pm.impressions,
     pm.clicks,
     pm.position,
     pm.ctr,
-    m.p95_impressions,
+    -- Normalized values for chart axes and size
+    CAST(pm.ctr AS REAL) / NULLIF(max(pm.ctr) over (), 0) as normalized_ctr,
+    CAST(pm.impressions AS REAL) / NULLIF(max(pm.impressions) over (), 0) as normalized_impressions,
+    CAST(pm.clicks AS REAL) / NULLIF(max(pm.clicks) over (), 0) as normalized_clicks,
+    -- Segmentation logic using raw values
     case
         when pm.impressions > COALESCE(m.median_impressions, 0) and pm.position < COALESCE(m.median_position, 999) and pm.ctr < COALESCE(m.median_ctr, 0) then '見えない看板'
         when pm.impressions < COALESCE(m.median_impressions, 0) and pm.ctr > COALESCE(m.median_ctr, 0) then '隠れた逸品'
