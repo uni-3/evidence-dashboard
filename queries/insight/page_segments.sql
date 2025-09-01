@@ -29,10 +29,10 @@ select
     CAST(pm.clicks AS REAL) / NULLIF(max(pm.clicks) over (), 0) as normalized_clicks,
     -- Segmentation logic using raw values
     case
-        when pm.impressions > COALESCE(m.median_impressions, 0) and pm.position < COALESCE(m.median_position, 999) and pm.ctr < COALESCE(m.median_ctr, 0) then '見えない看板'
-        when pm.impressions < COALESCE(m.median_impressions, 0) and pm.ctr > COALESCE(m.median_ctr, 0) then '隠れた逸品'
-        when pm.position < COALESCE(m.median_position, 999) and pm.ctr < COALESCE(m.median_ctr, 0) then '説得力のない勝者'
-        when pm.position > COALESCE(m.median_position, 999) and pm.ctr > COALESCE(m.median_ctr, 0) then '期待の星'
+        when pm.impressions < COALESCE(m.median_impressions, 0) and pm.ctr >= COALESCE(m.median_ctr, 0) then '隠れた逸品'
+        when pm.ctr >= COALESCE(m.median_ctr, 0) and pm.position < COALESCE(m.median_position, 999) then '主力'
+        when pm.ctr >= COALESCE(m.median_ctr, 0) and pm.position >= COALESCE(m.median_position, 999) then '期待の星'
+        when pm.ctr < COALESCE(m.median_ctr, 0) and pm.position < COALESCE(m.median_position, 999) then '説得力のない勝者'
         else 'その他'
     end as segment
 from page_metrics pm
