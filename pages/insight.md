@@ -12,6 +12,15 @@ queries:
 
 This chart classifies pages into segments based on their performance in Google Search.
 
+### セグメントの定義
+
+-   **主力 (Mainstay)**: CTRと掲載順位が共に中央値より良いページ
+-   **期待の星 (Rising Star)**: CTRは高いが、掲載順位がまだ低いページ
+-   **説得力のない勝者 (Unconvincing Winner)**: 掲載順位は良いが、CTRが低いページ
+-   **隠れた逸品 (Hidden Gem)**: インプレッションは低いが、CTRが高い特別なページ
+-   **その他 (Other)**: CTRと掲載順位が共に中央値より悪いページ
+
+
 <BubbleChart
     data={segments}
     title="Page Segments"
