@@ -1,12 +1,12 @@
+<script>
+    const segmentPalette = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd'];
+</script>
+
 ---
 title: Page Insight
 queries:
   - segments: insight/page_segments.sql
 ---
-
-<script>
-    const segmentPalette = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd'];
-</script>
 
 # Page Segmentation
 
@@ -21,7 +21,7 @@ This chart classifies pages into segments based on their performance in Google S
 -   **その他 (Other)**: CTRと掲載順位が共に中央値より悪いページ
 
 
-<BubbleChart
+<ScatterPlot
     data={segments}
     title="Page Segments"
     x=normalized_ctr
@@ -42,7 +42,7 @@ This chart classifies pages into segments based on their performance in Google S
     colorPalette={segmentPalette}
     tooltipTitle=tooltip_title
 >
-</BubbleChart>
+</ScatterPlot>
 
 <!--
     Note on tooltip:
