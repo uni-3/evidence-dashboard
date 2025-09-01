@@ -1,7 +1,3 @@
-<script>
-    const segmentPalette = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd'];
-</script>
-
 ---
 title: Page Insight
 queries:
@@ -39,7 +35,7 @@ This chart classifies pages into segments based on their performance in Google S
     yMax=1
     yAxisTitle="Normalized Impressions"
     xAxisTitle="Normalized CTR"
-    colorPalette={segmentPalette}
+    colorPalette={['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']}
     tooltipTitle=tooltip_title
 >
 </ScatterPlot>
