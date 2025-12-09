@@ -1,1 +1,1 @@
-select * from agg.poke_with_ja_names
+select * from pokemon.poke_with_ja_names
