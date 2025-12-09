@@ -3,7 +3,7 @@ title: pokemon viewer
 ---
 
 
-```sql poke_names 
+```sql poke_names
   select
     id
     ,ja_name
@@ -41,7 +41,7 @@ title: pokemon viewer
 <DataTable data={pokes} search=true>
   	<Column id=id />
   	<Column id=poke_front_img title="image" contentType=image width=60px align=center />
-  	<Column id=poke_front_shiny_img title="イロチ" contentType=image width=60px align=center />
+  	<Column id=poke_front_shiny_img title="shiny(イロチ)" contentType=image width=60px align=center />
   	<Column id=name />
   	<Column id=weight />
 </DataTable>

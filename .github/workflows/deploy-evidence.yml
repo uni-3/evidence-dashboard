@@ -1,6 +1,9 @@
 name: Schedule Vercel Deploy
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
   schedule:
     # run every Monday 00:00 in JST
     - cron: '0 15 * * 1'
