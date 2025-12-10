@@ -9,3 +9,5 @@ static/data
 .env
 .evidence/meta
 *.log
+.vercel
+.env*.local

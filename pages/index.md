@@ -37,7 +37,7 @@ queries:
       fillColor=#b8645e
   />
 
-  <BarChart 
+  <BarChart
       data={tag_count}
       x=created_at
       y=count
@@ -66,7 +66,7 @@ queries:
 >
 </BubbleChart>
 
-<LineChart 
+<LineChart
     data={norm_metrics_month}
     x=month
     y=normalized_imp
@@ -76,7 +76,7 @@ queries:
     labels=true
 />
 
-<LineChart 
+<LineChart
     data={norm_metrics_month}
     x=month
     y=normalized_pv
@@ -87,7 +87,7 @@ queries:
 />
 
 
-<BarChart 
+<BarChart
     data={norm_pv_day_of_week}
     x=day_of_week
     y=normalized_pv
@@ -98,7 +98,7 @@ queries:
     sort=false
 />
 
-<LineChart 
+<LineChart
     data={rank_month}
     x=month
     y=pv_rank
