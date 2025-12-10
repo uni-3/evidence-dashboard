@@ -12,12 +12,12 @@ welcome demo page
 
   const pages = Object.entries(modules).map(([path, mod]) => {
     // パスからファイル名などを整形
-    // see .ebidence/template/src/pages
+    // see .evidence/template/src/pages
     const slug = path.replace('./', '').replace('/+page.md', '');
 
     return {
       title: slug,
-      path: './' + slug
+      path: '/demo/' + slug
     };
   }).filter(Boolean); // null (自分自身) をリストから消す
 </script>
