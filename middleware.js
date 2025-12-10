@@ -1,8 +1,8 @@
 import { next } from "@vercel/edge";
 
-// demoページ以下はbasic認証
+// ページ以下はbasic認証
 export const config = {
-  matcher: ["/demo/:path*"],
+  matcher: ["/demo/:path*", "/playground/:path*"],
 };
 
 export default function middleware(request) {

@@ -17,7 +17,7 @@ welcome demo page
 
     return {
       title: slug,
-      path: '/demo/' + slug
+      path: '/playgroud/' + slug
     };
   }).filter(Boolean); // null (自分自身) をリストから消す
 </script>
@@ -34,4 +34,4 @@ welcome demo page
   {/each}
 </ul>
 
-<!-- <PageList folder="/demo" /> -->
+<!-- <PageList folder="/playground" /> -->
