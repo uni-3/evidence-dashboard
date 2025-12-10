@@ -1,0 +1,7 @@
+{
+  "framework": null,
+  "buildCommand": "npm run sources && npm run build",
+  "devCommand": "npm run dev -- --port $PORT",
+  "installCommand": "npm install",
+  "outputDirectory": "build"
+}
