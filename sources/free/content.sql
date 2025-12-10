@@ -1,1 +1,1 @@
-select * from blog_info_staging.stg_parsed_blog_content
+select * from blog_info_staging.stg_blog_info__blog_content
