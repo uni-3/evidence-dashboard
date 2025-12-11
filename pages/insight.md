@@ -1,5 +1,6 @@
 ---
 title: Page Insight
+sidebar: hide
 queries:
   - segments: insight/page_segments.sql
 ---

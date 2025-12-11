@@ -6,7 +6,7 @@ queries:
 
 ## {$page.params.page}
 
-<BigLink href={$page_query_metrics[0].url}>記事ページ</BigLink>
+<BigLink url={$page_query_metrics[0].url}>記事ページ</BigLink>
 
 ### 検索クエリ別
 
@@ -34,7 +34,7 @@ queries:
     link=url
 />
 
-<ScatterPlot 
+<ScatterPlot
     data={page_word_metrics}
     x=normalized_imp
     y=normalized_clicks
