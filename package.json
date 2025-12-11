@@ -8,9 +8,7 @@
     "vercel:dev": "vercel dev",
     "test": "evidence build",
     "sources": "evidence sources",
-    "preview": "evidence preview",
-    "build-spa": "VITE_EVIDENCE_SPA=true evidence build",
-    "preview-spa": "VITE_EVIDENCE_SPA=true evidence preview"
+    "preview": "evidence preview"
   },
   "engines": {
     "npm": ">=7.0.0",
