@@ -11,13 +11,21 @@ export default function middleware(request) {
   // 正解のユーザー/パスワード
   const validUser = process.env.BASIC_AUTH_USER;
   const validPass = process.env.BASIC_AUTH_PASSWORD;
+  if (!validUser || !validPass) {
+    console.error('Basic auth credentials are not set in environment variables.');
+    return new Response('Internal Server Error', { status: 500 });
+  }
 
   if (authorizationHeader) {
-    const basicAuth = authorizationHeader.split(" ")[1];
-    const [user, password] = atob(basicAuth).split(":");
+    try {
+      const basicAuth = authorizationHeader.split(" ")[1];
+      const [user, password] = atob(basicAuth).split(":");
 
-    if (user === validUser && password === validPass) {
-      return next();
+      if (safeCompare(user, validUser) && safeCompare(password, validPass)) {
+        return next();
+      }
+    } catch (e) {
+      // Malformed auth header, fall through to the 401 response below.
     }
   }
 
@@ -28,3 +36,16 @@ export default function middleware(request) {
     },
   });
 }
+
+// Constant-time comparison to prevent timing attacks
+const safeCompare = (a, b) => {
+  let mismatch = a.length === b.length ? 0 : 1;
+  if (mismatch) {
+    // Ensure comparison time is not dependent on string length
+    b = a;
+  }
+  for (let i = 0; i < a.length; ++i) {
+    mismatch |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return mismatch === 0;
+};
