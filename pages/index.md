@@ -104,21 +104,14 @@ queries:
     y=pv_rank
     yMin=1
     yMax=10
+    markerSize=12
     yGridlines=false
     series=page_title
     step=true
     markers=true
-    showAllLabels=true
     title="ページごとのPV数順位の推移"
-    echartsOptions={{ yAxis: {inverse: true }, tooltip: {show: false}}}
->
-    <ReferencePoint
-      data={rank_month}
-      x=month
-      y=pv_rank
-      label=page_title_offset labelPosition=right
-    />
-</LineChart>
+    echartsOptions={{ yAxis: {inverse: true }, tooltip: { show: true, trigger: 'item', formatter: '{a}' }}}
+/>
 
 
 <LastRefreshed/>
