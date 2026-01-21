@@ -10,6 +10,9 @@ queries:
   - norm_metrics_month: blog/norm_metrics_month.sql
   - norm_pv_day_of_week: blog/norm_pv_day_of_week.sql
   - metrics_bubble_chart: blog/metrics_bubble_chart.sql
+  - tag_pv_share: blog/tag_pv_share.sql
+  - word_click_share: blog/word_click_share.sql
+  - search_word_network: blog/search_word_network.sql
 ---
 
 
@@ -39,10 +42,11 @@ queries:
 
   <BarChart
       data={tag_count}
-      x=created_at
+      x=year
       y=count
       series=tag
       legend=false
+      sort=false
       title="count by tag(appears 3 or more times)"
   />
 </Grid>
@@ -104,21 +108,75 @@ queries:
     y=pv_rank
     yMin=1
     yMax=10
+    markerSize=12
     yGridlines=false
     series=page_title
     step=true
     markers=true
-    showAllLabels=true
     title="ページごとのPV数順位の推移"
-    echartsOptions={{ yAxis: {inverse: true }, tooltip: {show: false}}}
->
-    <ReferencePoint
-      data={rank_month}
-      x=month
-      y=pv_rank
-      label=page_title_offset labelPosition=right
-    />
-</LineChart>
+    echartsOptions={{ yAxis: {inverse: true }, tooltip: { show: true, trigger: 'item', formatter: '{a}' }}}
+/>
 
+
+<BarChart
+    data={tag_pv_share}
+    x=month
+    y=pv_share
+    series=tag
+    title="各月別Top 10タグのPVシェア"
+    yFmt=pct2
+    stack=true
+    yMax=1
+    echartsOptions={{
+        tooltip: {
+            trigger: 'item',
+            formatter: (params) => {
+                const val = params.value[params.seriesName] || params.value[1];
+                return params.seriesName + ': ' + (Number(val) * 100).toFixed(2) + '%';
+            }
+        },
+        xAxis: {
+            axisLabel: {
+                formatter: (value) => {
+                    const d = new Date(value);
+                    return d.getFullYear() + '/' + (d.getMonth() + 1).toString().padStart(2, '0');
+                }
+            }
+        }
+    }}
+/>
+
+
+<BarChart
+    data={word_click_share}
+    x=category
+    y=click_share
+    series=query_word
+    stack=true
+    title="検索単語のクリック貢献シェア (上位10単語)"
+    yFmt=pct2
+    swapXY=true
+    xAxisTitle=false
+    echartsOptions={{
+        tooltip: {
+            trigger: 'item',
+            formatter: (params) => {
+                const val = params.value[params.seriesName] || params.value[0];
+                return params.seriesName + ': ' + (Number(val) * 100).toFixed(2) + '%';
+            }
+        },
+        xAxis: { show: true },
+        yAxis: { show: true},
+    }}
+/>
+
+
+<div class="p-6 rounded-xl shadow-sm border border-gray-100 my-8">
+  <h4 class="text-md font-semibold text-gray-800 mb-1">検索単語の共起ネットワーク。クリック数1以上の検索のみ</h4>
+
+  <div class="w-full" style="height: 350px; display: flex; flex-direction: column;">
+    <NetworkGraph data={search_word_network} />
+  </div>
+</div>
 
 <LastRefreshed/>
