@@ -10,6 +10,8 @@ queries:
   - norm_metrics_month: blog/norm_metrics_month.sql
   - norm_pv_day_of_week: blog/norm_pv_day_of_week.sql
   - metrics_bubble_chart: blog/metrics_bubble_chart.sql
+  - tag_pv_share: blog/tag_pv_share.sql
+  - word_click_share: blog/word_click_share.sql
 ---
 
 
@@ -115,4 +117,55 @@ queries:
 />
 
 
+<BarChart
+    data={tag_pv_share}
+    x=month
+    y=pv_share
+    series=tag
+    title="各月別Top 10タグのPVシェア"
+    yFmt=pct2
+    stack=true
+    yMax=1
+    echartsOptions={{
+        tooltip: {
+            trigger: 'item',
+            formatter: (params) => {
+                const val = params.value[params.seriesName] || params.value[1];
+                return params.seriesName + ': ' + (Number(val) * 100).toFixed(2) + '%';
+            }
+        },
+        xAxis: {
+            axisLabel: {
+                formatter: (value) => {
+                    const d = new Date(value);
+                    return d.getFullYear() + '/' + (d.getMonth() + 1).toString().padStart(2, '0');
+                }
+            }
+        }
+    }}
+/>
+
+
+<BarChart
+    data={word_click_share}
+    x=category
+    y=click_share
+    series=query_word
+    stack=true
+    title="検索単語のクリック貢献シェア (上位10単語)"
+    yFmt=pct2
+    swapXY=true
+    xAxisTitle=false
+    echartsOptions={{
+        tooltip: {
+            trigger: 'item',
+            formatter: (params) => {
+                const val = params.value[params.seriesName] || params.value[0];
+                return params.seriesName + ': ' + (Number(val) * 100).toFixed(2) + '%';
+            }
+        },
+        xAxis: { show: true },
+        yAxis: { show: true},
+    }}
+/>
 <LastRefreshed/>
