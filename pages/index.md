@@ -39,10 +39,11 @@ queries:
 
   <BarChart
       data={tag_count}
-      x=created_at
+      x=year
       y=count
       series=tag
       legend=false
+      sort=false
       title="count by tag(appears 3 or more times)"
   />
 </Grid>
