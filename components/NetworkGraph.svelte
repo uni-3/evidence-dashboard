@@ -28,6 +28,7 @@
           type: "graph",
           layout: "force",
           roam: true,
+          zoom: 0.7,
           top: "5%",
           bottom: "5%",
           left: "5%",
@@ -39,9 +40,9 @@
             color: "#4b5563",
           },
           force: {
-            repulsion: 300,
-            edgeLength: [50, 100],
-            gravity: 0.1,
+            repulsion: 500,
+            edgeLength: [80, 160],
+            gravity: 0.05,
           },
           lineStyle: {
             color: "#e5e7eb",
