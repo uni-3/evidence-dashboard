@@ -34,31 +34,32 @@ queries:
       title="記事の文字数分布"
       fillColor=#b8645e
   />
-
-  <BarChart
-      data={tag_count}
-      x=year
-      y=count
-      series=tag
-      legend=false
-      sort=false
-      title="count by tag(appears 3 or more times)"
-  />
 </Grid>
+
+<BarChart
+    data={tag_count}
+    x=year
+    y=count
+    series=tag
+    legend=false
+    sort=false
+    title="count by tag(appears 3 or more times)"
+/>
 
 <LineChart
     data={rank_month}
     x=month
     y=pv_rank
     yMin=1
-    yMax=10
-    markerSize=12
+    yMax=11
+    markerSize=28
     yGridlines=false
     series=page_title
     step=true
     markers=true
+    chartAreaHeight=350
     title="ページごとのPV数順位の推移"
-    echartsOptions={{ yAxis: {inverse: true }, tooltip: { show: true, trigger: 'item', formatter: '{a}' }}}
+    echartsOptions={{ yAxis: {inverse: true, axisLabel: { show: false } }, grid: { top: 60 }, tooltip: { show: true, trigger: 'item', formatter: '{a}' }, labelLayout: { hideOverlap: false }, series: Array.from({length: 50}, () => ({ symbolSize: 28, label: { show: true, position: 'inside', fontSize: 11, fontWeight: 'bold', color: '#fff' }, emphasis: { label: { show: true, position: 'inside', fontSize: 11, fontWeight: 'bold', color: '#fff' } } })) }}
 />
 
 <div class="p-6 rounded-xl shadow-sm border border-gray-100 my-8">
