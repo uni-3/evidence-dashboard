@@ -100,28 +100,43 @@ queries:
 
 <BarChart
     data={word_click_share}
-    x=category
+    x=query_word
     y=click_share
-    series=query_word
-    stack=true
-    title="検索単語のクリック貢献シェア (上位10単語)"
-    yFmt=pct2
+    title="検索単語のクリック貢献シェア (上位10)"
     swapXY=true
+    yFmt=pct2
+    sort=true
+    yAxisTitle="検索単語"
     xAxisTitle=false
+    xAxis=false
+    xGridlines=false
+    tooltipTitle="query_word"
+    labels=true
     echartsOptions={{
-        tooltip: {
-            trigger: 'item',
-            formatter: (params) => {
-                const val = params.value[params.seriesName] || params.value[0];
-                return params.seriesName + ': ' + (Number(val) * 100).toFixed(2) + '%';
-            }
+        grid: {
+            left: 20,
+            containLabel: true
         },
-        xAxis: { show: true },
-        yAxis: { show: true},
+        xAxis: {
+            show: false
+        },
+        yAxis: {
+            axisLabel: {
+                interval: 0,
+                formatter: (value) => {
+                    let text = value.length > 50 ? value.substring(0, 50) + '...' : value;
+                    let result = '';
+                    while (text.length > 20) {
+                        let i = text.substring(0, 20).lastIndexOf(' ');
+                        i = i === -1 ? 20 : i; // 20文字以内にスペースが無ければ強制的に20文字で切る
+                        result += text.substring(0, i) + '\n';
+                        text = text.substring(i + (text[i] === ' ' ? 1 : 0));
+                    }
+                    return result + text;
+                }
+            }
+        }
     }}
 />
-
-
-
 
 <LastRefreshed/>
