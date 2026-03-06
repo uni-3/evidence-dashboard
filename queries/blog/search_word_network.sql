@@ -1,7 +1,7 @@
 with word_pages as (
     select distinct
         url,
-        split_part(query_word, ' ', 1) as word
+        query_word as word,
     from free.count_search_word
     where clicks > 0
 ),

@@ -1,16 +1,10 @@
 with
-    words_processed as (
-        select
-            split_part(query_word, ' ', 1) as word,
-            clicks
-        from free.count_search_word
-        where clicks > 0
-    ),
     word_clicks as (
         select
-            word as query_word,
+            query_word,
             sum(clicks) as total_clicks
-        from words_processed
+        from free.count_search_word
+        where clicks > 0
         group by 1
     ),
     top_10 as (

@@ -18,7 +18,7 @@
         trigger: "item",
         formatter: (params) => {
           if (params.dataType === "edge") {
-            return `${params.data.source} - ${params.data.target}<br/>共起回数: ${params.data.value}`;
+            return `${params.data.source} - ${params.data.target}`;
           }
           return params.name;
         },
@@ -28,6 +28,7 @@
           type: "graph",
           layout: "force",
           roam: true,
+          zoom: 0.3,
           top: "5%",
           bottom: "5%",
           left: "5%",
@@ -39,7 +40,7 @@
             color: "#4b5563",
           },
           force: {
-            repulsion: 300,
+            repulsion: 350,
             edgeLength: [50, 100],
             gravity: 0.1,
           },
