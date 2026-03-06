@@ -6,9 +6,17 @@ queries:
   - metrics_bubble_chart: blog/metrics_bubble_chart.sql
   - tag_pv_share: blog/tag_pv_share.sql
   - word_click_share: blog/word_click_share.sql
+  - ai_insight_metrics: blog/ai_insight_metrics.sql
 ---
 
 ### 指標に関するデータ
+
+{#if ai_insight_metrics.length > 0}
+<Alert status="info">
+  <b>ℹ️ AIによるサマリ</b><br/>
+  {ai_insight_metrics[0].insight}
+</Alert>
+{/if}
 
 <BubbleChart
     title="記事ごとの指標"

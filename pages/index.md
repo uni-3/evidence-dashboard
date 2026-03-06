@@ -8,6 +8,7 @@ queries:
   - tag_count: blog/tag_count.sql
   - rank_month: blog/rank_month.sql
   - search_word_network: blog/search_word_network.sql
+  - ai_insight_rankings: blog/ai_insight_rankings.sql
 ---
 
 
@@ -46,6 +47,13 @@ queries:
     title="count by tag(appears 3 or more times)"
     echartsOptions={{ tooltip: { show: true, trigger: 'item', formatter: (params) => params.seriesName + ': ' + params.value[1] } }}
 />
+
+{#if ai_insight_rankings.length > 0}
+<Alert status="info">
+  <b>ℹ️ AIによるサマリ</b><br/>
+  {ai_insight_rankings[0].insight}
+</Alert>
+{/if}
 
 <LineChart
     data={rank_month}

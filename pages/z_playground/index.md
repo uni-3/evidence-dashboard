@@ -17,7 +17,7 @@ welcome demo page
 
     return {
       title: slug,
-      path: '/playground/' + slug
+      path: '/z_playground/' + slug
     };
   }).filter(Boolean); // null (自分自身) をリストから消す
 </script>

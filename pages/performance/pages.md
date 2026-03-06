@@ -3,9 +3,9 @@ title: ページごとのメトリクス
 ---
 
 ```sql pages
-select 
+select
     url,
-    '/blog-pages/' || slug as link,
+    '/performance/' || slug as link,
     sum(impressions) as i
 from free.count_search_word
 group by all
