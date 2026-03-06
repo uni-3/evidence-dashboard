@@ -9,30 +9,7 @@ queries:
   - ai_insight_metrics: blog/ai_insight_metrics.sql
 ---
 
-### 指標に関するデータ
-
-{#if ai_insight_metrics.length > 0}
-<Alert status="info">
-  <b>ℹ️ AIによるサマリ</b><br/>
-  {ai_insight_metrics[0].insight}
-</Alert>
-{/if}
-
-<BubbleChart
-    title="記事ごとの指標"
-    data={metrics_bubble_chart}
-    x=ctr
-    y=normalized_pv
-    xFmt=num2
-    yFmt=num2
-    sizeFmt=num2
-    yGridlines=false
-    yMax=1.0
-    yMin=0
-    series=page_title
-    size=normalized_imp
->
-</BubbleChart>
+### 全体指標に関するチャート
 
 <LineChart
     data={norm_metrics_month}
@@ -54,6 +31,13 @@ queries:
     labels=true
 />
 
+{#if ai_insight_metrics.length > 0}
+<Alert status="info">
+  <b>ℹ️ AIによるサマリ</b><br/>
+  {ai_insight_metrics[0].insight}
+</Alert>
+{/if}
+
 
 <BarChart
     data={norm_pv_day_of_week}
@@ -66,6 +50,23 @@ queries:
     sort=false
 />
 
+### ページ・タグなど個別の指標に関するチャート
+
+<BubbleChart
+    title="記事ごとのPV/CTRの分布"
+    data={metrics_bubble_chart}
+    x=ctr
+    y=normalized_pv
+    xFmt=num2
+    yFmt=num2
+    sizeFmt=num2
+    yGridlines=false
+    yMax=1.0
+    yMin=0
+    series=page_title
+    size=normalized_imp
+>
+</BubbleChart>
 
 
 <BarChart

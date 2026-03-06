@@ -48,12 +48,6 @@ queries:
     echartsOptions={{ tooltip: { show: true, trigger: 'item', formatter: (params) => params.seriesName + ': ' + params.value[1] } }}
 />
 
-{#if ai_insight_rankings.length > 0}
-<Alert status="info">
-  <b>ℹ️ AIによるサマリ</b><br/>
-  {ai_insight_rankings[0].insight}
-</Alert>
-{/if}
 
 <LineChart
     data={rank_month}
@@ -70,6 +64,13 @@ queries:
     title="ページごとのPV数順位の推移"
     echartsOptions={{ yAxis: {inverse: true, axisLabel: { show: false } }, grid: { top: 60, left: 10 }, tooltip: { show: true, trigger: 'item', formatter: '{a}' }, labelLayout: { hideOverlap: false }, series: Array.from({length: 50}, () => ({symbolSize: 28, label: { show: true, position: 'inside', fontSize: 11, fontWeight: 'bold', color: '#fff' }, emphasis: { label: { show: true, position: 'inside', fontSize: 11, fontWeight: 'bold', color: '#fff' } } })) }}
 />
+
+{#if ai_insight_rankings.length > 0}
+<Alert status="info">
+  <b>ℹ️ AIによるサマリ</b><br/>
+  {ai_insight_rankings[0].insight}
+</Alert>
+{/if}
 
 <div class="p-6 rounded-xl shadow-sm border border-gray-100 my-8">
   <h4 class="text-md font-semibold text-gray-800 mb-1">検索単語の共起ネットワーク</h4>
