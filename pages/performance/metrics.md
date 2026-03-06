@@ -11,6 +11,52 @@ queries:
 
 ### 全体指標に関するチャート
 
+<script>
+    const tagShareChartOptions = {
+        tooltip: {
+            trigger: 'item',
+            formatter: (params) => {
+                const val = params.value[params.seriesName] || params.value[1];
+                return params.seriesName + ': ' + (Number(val) * 100).toFixed(2) + '%';
+            }
+        },
+        xAxis: {
+            axisLabel: {
+                formatter: (value) => {
+                    const d = new Date(value);
+                    return d.getFullYear() + '/' + (d.getMonth() + 1).toString().padStart(2, '0');
+                }
+            }
+        }
+    };
+
+    const wordShareChartOptions = {
+        grid: {
+            left: 20,
+            containLabel: true
+        },
+        xAxis: {
+            show: false
+        },
+        yAxis: {
+            axisLabel: {
+                interval: 0,
+                formatter: (value) => {
+                    let text = value.length > 50 ? value.substring(0, 50) + '...' : value;
+                    let result = '';
+                    while (text.length > 20) {
+                        let i = text.substring(0, 20).lastIndexOf(' ');
+                        i = i === -1 ? 20 : i; // 20文字以内にスペースが無ければ強制的に20文字で切る
+                        result += text.substring(0, i) + '\n';
+                        text = text.substring(i + (text[i] === ' ' ? 1 : 0));
+                    }
+                    return result + text;
+                }
+            }
+        }
+    };
+</script>
+
 <LineChart
     data={norm_metrics_month}
     x=month
@@ -78,23 +124,7 @@ queries:
     yFmt=pct2
     stack=true
     yMax=1
-    echartsOptions={{
-        tooltip: {
-            trigger: 'item',
-            formatter: (params) => {
-                const val = params.value[params.seriesName] || params.value[1];
-                return params.seriesName + ': ' + (Number(val) * 100).toFixed(2) + '%';
-            }
-        },
-        xAxis: {
-            axisLabel: {
-                formatter: (value) => {
-                    const d = new Date(value);
-                    return d.getFullYear() + '/' + (d.getMonth() + 1).toString().padStart(2, '0');
-                }
-            }
-        }
-    }}
+    echartsOptions={tagShareChartOptions}
 />
 
 
@@ -112,31 +142,7 @@ queries:
     xGridlines=false
     tooltipTitle="query_word"
     labels=true
-    echartsOptions={{
-        grid: {
-            left: 20,
-            containLabel: true
-        },
-        xAxis: {
-            show: false
-        },
-        yAxis: {
-            axisLabel: {
-                interval: 0,
-                formatter: (value) => {
-                    let text = value.length > 50 ? value.substring(0, 50) + '...' : value;
-                    let result = '';
-                    while (text.length > 20) {
-                        let i = text.substring(0, 20).lastIndexOf(' ');
-                        i = i === -1 ? 20 : i; // 20文字以内にスペースが無ければ強制的に20文字で切る
-                        result += text.substring(0, i) + '\n';
-                        text = text.substring(i + (text[i] === ' ' ? 1 : 0));
-                    }
-                    return result + text;
-                }
-            }
-        }
-    }}
+    echartsOptions={wordShareChartOptions}
 />
 
 <LastRefreshed/>

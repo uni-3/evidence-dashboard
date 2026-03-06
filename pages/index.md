@@ -45,11 +45,13 @@ queries:
     legend=false
     sort=false
     title="count by tag(appears 3 or more times)"
-    echartsOptions={{ tooltip: { show: true, trigger: 'item', formatter: (params) => params.seriesName + ': ' + params.value[1] } }}
+    echartsOptions={tagChartOptions}
 />
 
 
 <script>
+    const tagChartOptions = { tooltip: { show: true, trigger: 'item', formatter: (params) => params.seriesName + ': ' + params.value[1] } };
+
     const SERIES_COUNT = 100; // 最悪ケース (10記事/月 × 6ヶ月 = 60) を想定し、余裕を持たせて100
     const rankChartOptions = {
         yAxis: { inverse: true, axisLabel: { show: false } },
