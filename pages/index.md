@@ -83,10 +83,12 @@ queries:
 />
 
 {#if ai_insight_rankings.length > 0}
+  {#if ai_insight_rankings[0].insight != null}
 <Alert status="info">
   <b>ℹ️ AIによるサマリ</b><br/>
   {ai_insight_rankings[0].insight}
 </Alert>
+  {/if}
 {/if}
 
 <div class="p-6 rounded-xl shadow-sm border border-gray-100 my-8">

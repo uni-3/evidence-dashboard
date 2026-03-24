@@ -78,10 +78,12 @@ queries:
 />
 
 {#if ai_insight_metrics.length > 0}
+  {#if ai_insight_metrics[0].insight != null}
 <Alert status="info">
   <b>ℹ️ AIによるサマリ</b><br/>
   {ai_insight_metrics[0].insight}
 </Alert>
+  {/if}
 {/if}
 
 
