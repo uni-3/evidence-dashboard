@@ -2,7 +2,7 @@ import { next } from "@vercel/edge";
 
 // ページ以下はbasic認証
 export const config = {
-  matcher: ["/demo/:path*", "/playground/:path*"],
+  matcher: ["/demo/:path*", "/playground/:path*", "/z_playground/:path*"],
 };
 
 export default function middleware(request) {
