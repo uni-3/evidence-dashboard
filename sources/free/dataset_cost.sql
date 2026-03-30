@@ -8,4 +8,4 @@ SELECT
   -- 仮レート
   physical_cost_monthly_forecast * 150 AS monthly_forecast_storage_cost_jpy
 FROM
-  dbt_bigquery_monitoring.dataset_with_cost
+  blog_info_dbt_bigquery_monitoring.dataset_with_cost
