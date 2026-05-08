@@ -8,6 +8,9 @@ select
     '/performance/' || slug as link,
     sum(impressions) as i
 from free.count_search_word
+where
+    slug is not null
+    and regexp_matches(slug, '^[A-Za-z0-9][A-Za-z0-9._~-]*$')
 group by all
 order by i desc
 ```
