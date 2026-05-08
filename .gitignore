@@ -10,3 +10,4 @@ static/data
 *.log
 .vercel
 .env*.local
+.worktrees/
