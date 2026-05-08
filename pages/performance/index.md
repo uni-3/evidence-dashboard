@@ -1,7 +1,5 @@
 ---
 title: Performance
-queries:
-  - top_pages: blog/rank_month.sql
 ---
 
 ## ブログパフォーマンス
